@@ -29,16 +29,6 @@ str	w0, [sp, 12]
 ```
 
 ```
-naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 81 0 3
-You Lose :(
-naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 81 3 0
-You Lose :(
-naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 81 3
-You Lose :(
-naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 81 
-You Lose :(
-naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 3
-You Lose :(
 naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 0
 You Lose :(
 naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 0 3
@@ -52,5 +42,15 @@ You Lose :(
 naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 27
 You win!
 ```
-After reading the assembly file and 
 
+My initial mistakes were about missing the part that the input was being subtracted from the 27 value that we got by division of 81 by 3. I misunderstood the condition to win as something like division of arguments must come as 0 which was wrong which resulted in it being wrong every time.
+After getting the correct answer as 27, I just converted it into hex and put it in the challenge with the right format described.
+
+References I used were:
+```
+Youtube video on Reverse Engineering by Low Level to understand the basics on what I was supposed to do
+Link:
+https://www.youtube.com/watch?v=1d-6Hv1c39c
+
+Then I used google to search for what terms like mov str and lsl and sdiv mean and also used ChatGPT to understand part of the code where the subtraction from 27 by the input was taking place.
+```
