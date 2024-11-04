@@ -27,6 +27,25 @@ str	w0, [sp, 12]
 	mov	w0, 3
 	str	w0, [sp, 24]
 ```
+The code does division of 81 by 3 resulting in 27 which is then stored in offset 28.
+
+```
+    ldr     w1, [sp, 28]        
+    ldr     w0, [sp, 24]         
+    sdiv    w0, w1, w0            
+    str     w0, [sp, 28]         
+
+```
+This part is which I was confused about for a good while, it basically takes the input and subtracts it from 27 which we earlier stored and then the function returns that value at the end.
+```
+  ldr     w1, [sp, 28]         
+  ldr     w0, [sp, 12]        
+  sub     w0, w1, w0            
+  str     w0, [sp, 28]
+```
+
+My initial mistakes were about missing the part that the input was being subtracted from the 27 value that we got by division of 81 by 3. I misunderstood the condition to win as something like division of arguments must come as 0 which was wrong which resulted in it being wrong every time.
+After getting the correct answer as 27, I just converted it into hex and put it in the challenge with the right format described.
 
 ```
 naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 0
@@ -43,8 +62,7 @@ naman_kaushik@Ubuntu:~/Downloads$ qemu-aarch64 ./chal 27
 You win!
 ```
 
-My initial mistakes were about missing the part that the input was being subtracted from the 27 value that we got by division of 81 by 3. I misunderstood the condition to win as something like division of arguments must come as 0 which was wrong which resulted in it being wrong every time.
-After getting the correct answer as 27, I just converted it into hex and put it in the challenge with the right format described.
+
 
 References I used were:
 ```
